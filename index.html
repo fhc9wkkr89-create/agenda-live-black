@@ -25,6 +25,8 @@ h1{font-size:clamp(34px,10vw,46px);line-height:1.02;font-weight:900;letter-spaci
 .day span{display:block;font-size:38px;font-weight:900;line-height:1.1;padding:2px 0 4px}
 .when p{font-size:19px;font-weight:900;line-height:1.2}
 .when small{display:block;margin-top:4px;font-size:14px;font-weight:700;color:#3C5878}
+.when small.lt{color:#0B7A8E;font-weight:900}
+.when small.lt:empty{display:none}
 .lead{font-size:17px;line-height:1.4;font-weight:700;color:var(--line)}
 .opts{width:100%;display:flex;flex-direction:column;gap:12px}
 .opt{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:62px;padding:14px 18px;border-radius:16px;
@@ -62,9 +64,10 @@ h1{font-size:clamp(34px,10vw,46px);line-height:1.02;font-weight:900;letter-spaci
   var ua = navigator.userAgent || '', box = document.getElementById('opts'), pick = null;
   var apple = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document) || /Macintosh/.test(ua);
   if (apple) pick = 'apple'; else if (/Android/.test(ua)) pick = 'google';
-  if (!pick) return;
-  var el = box.querySelector('[data-os="' + pick + '"]');
-  if (el) { el.classList.add('best'); box.insertBefore(el, box.firstChild); }
+  if (pick) {
+    var el = box.querySelector('[data-os="' + pick + '"]');
+    if (el) { el.classList.add('best'); box.insertBefore(el, box.firstChild); }
+  }
 })();
 </script>
 </body></html>
